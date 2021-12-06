@@ -23,7 +23,7 @@ export default function Categories(){
 				<div className=" mx-5 px-5">
 					<h5>Tops</h5>
 					<p><em>Timeless pieces to help you find connection with fashion</em></p>
-					<Button variant="outline-secondary">Shop for Blouses and Shirts</Button>
+					<Button variant="outline-secondary"  as={Link} to="/products/categories/top" exact>Shop for Blouses and Shirts</Button>
 				</div>
 			</Col>
 		</Row>
@@ -35,7 +35,7 @@ export default function Categories(){
 				<div className="justify-content-end mx-5 px-5">
 					<h5>Bottoms</h5>
 					<p>Timeless pieces to help you find connection with fashion</p>
-					<Button variant="outline-secondary">Shop for Skirts and Pants</Button>
+					<Button variant="outline-secondary"  as={Link} to="/products/categories/bottom" exact>Shop for Skirts and Pants</Button>
 				</div>
 				
 			</Col>
@@ -53,7 +53,7 @@ export default function Categories(){
 				<div className=" mx-5 px-5">
 					<h5>Dresses</h5>
 					<p><em>Timeless pieces to help you find connection with fashion</em></p>
-					<Button variant="outline-secondary">Shop for Dresses and Coords</Button>
+					<Button variant="outline-secondary" as={Link} to="/products/categories/dress" exact>Shop for Dresses and Coords</Button>
 				</div>
 			</Col>
 		</Row>
@@ -64,7 +64,7 @@ export default function Categories(){
 				<div className="justify-content-end mx-5 px-5">
 					<h5>Accessories</h5>
 					<p>Timeless pieces to help you find connection with fashion</p>
-					<Button variant="outline-secondary">Shop for Accessories</Button>
+					<Button variant="outline-secondary" as={Link} to="/products/categories/accessory" exact>Shop for Accessories</Button>
 				</div>
 				
 			</Col>

@@ -18,7 +18,8 @@ export default function ProductView(){
 	const [onSale, setOnSale] = useState(false)
 	const [inStock, setInStock] = useState('')
 
-	const orderItem = (productId) => {
+/*	const cartItem = (productId) => {
+
 		fetch(`http://localhost:4000/users/checkout`, {
 			method: 'POST',
 			headers: {
@@ -26,9 +27,24 @@ export default function ProductView(){
 				Authorization :  `Bearer ${localStorage.getItem("token")}`
 			},
 			body: JSON.stringify({
-				productId: productId,
-				//userId: user._id,
 				customer: user._id,
+				
+				cartList: [
+					 productId: productId//product not defined
+				]
+				//userId: user._id
+
+				
+					postman
+
+					{
+					    "customer" : "61a32c4cafe5e838636ef754",
+					    "cartList" : [{
+					        "product": "61a3300f5288df63d89ef5e9",
+					        "quantity": "1"
+					    }]
+					   
+					}
 				
 			})
 		})
@@ -52,6 +68,44 @@ export default function ProductView(){
 			}
 		})
 	} 
+*/
+
+
+	const addCart = (productId) => {
+		fetch(`http://localhost:4000/products/${productId}`, {
+			method: 'POST',
+			headers: {
+				"Content-Type" : "application/json",
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			},
+			body: JSON.stringify({
+				customer: user.id,
+				cartList: [
+					productId: productId
+				]
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			console.log(data)
+
+			if(data === true){
+				Swal.fire({
+					title: 'Success',
+					icon: 'success',
+					text: 'Product added to cart'
+				})
+
+			} else { 
+				Swal.fire({
+					title: 'Something went wrong',
+					icon: 'error',
+					text: 'Please try again'
+				})
+			}
+
+		})
+	}
 
 	useEffect(() => {
 		console.log(productId)
@@ -72,11 +126,16 @@ export default function ProductView(){
 	return(
 
 		<Container>
-			<Row>
-				<Col>
-					<Card>
+			<Row className="m-0 " style={{height: "603px"}}>
+				<Col md={10} className="m-auto">
+					<Card className= "border-light">
 						<Card.Body>
-							<Card.Img variant= "top" src={`../images/${name}.jpg`} style={{ height: "28rem"}}/>
+						<Container>
+						<Row  >
+							<Col md={7} className="text-center" >
+							<Card.Img variant= "left" src={`../images/${name}.jpg`} style={{ height: "28rem"}}/>
+							</Col>
+							<Col md={5} className= "my-auto">
 							<Card.Title>{name}</Card.Title>
 							<Card.Subtitle>Description: </Card.Subtitle>
 							<Card.Text>{description}</Card.Text>
@@ -88,7 +147,10 @@ export default function ProductView(){
 								<Link className = "btn btn-secondary btn-block" to = '/login'>Log in to Shop</Link>
 							}*/}
 
-							<Button variant = "secondary" onClick={() => orderItem(productId)}>Add to Cart</Button>
+							<Button variant = "secondary" onClick={() => addCart(productId)}>Add to Cart</Button>
+							</Col>
+						</Row>
+						</Container>
 						</Card.Body>	
 					</Card>	
 				</Col>	

@@ -18,60 +18,9 @@ export default function ProductView(){
 	const [onSale, setOnSale] = useState(false)
 	const [inStock, setInStock] = useState('')
 
-/*	const cartItem = (productId) => {
-
-		fetch(`http://localhost:4000/users/checkout`, {
-			method: 'POST',
-			headers: {
-				"Content-Type" : "application/json",
-				Authorization :  `Bearer ${localStorage.getItem("token")}`
-			},
-			body: JSON.stringify({
-				customer: user._id,
-				
-				cartList: [
-					 productId: productId//product not defined
-				]
-				//userId: user._id
-
-				
-					postman
-
-					{
-					    "customer" : "61a32c4cafe5e838636ef754",
-					    "cartList" : [{
-					        "product": "61a3300f5288df63d89ef5e9",
-					        "quantity": "1"
-					    }]
-					   
-					}
-				
-			})
-		})
-		.then(res => res.json())
-		.then(data => {
-			console.log(data)
-
-			if(data === true){
-				Swal.fire({
-					title: 'Success',
-					icon: 'success',
-					text: 'Product added to cart'
-				})
-
-			} else { 
-				Swal.fire({
-					title: 'Something went wrong',
-					icon: 'error',
-					text: 'Please try again'
-				})
-			}
-		})
-	} 
-*/
 
 
-	const addCart = (productId) => {
+	/*const addCart = (productId) => {
 		fetch(`http://localhost:4000/products/${productId}`, {
 			method: 'POST',
 			headers: {
@@ -105,7 +54,7 @@ export default function ProductView(){
 			}
 
 		})
-	}
+	}*/
 
 	useEffect(() => {
 		console.log(productId)

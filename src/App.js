@@ -82,7 +82,7 @@ function App() {
               <Route exact path ="/logout" element={<Logout/>}/>
               <Route exact path = "/products" element={<Products/>}/>
               <Route exact path = "/products/:productId" element={<ProductView/>}/>
-              <Route exact path = "/cart" element={<OrderView/>}/>
+              <Route exact path = "/cart" element={<OrderView/>}/> //...
               <Route exact path = "/register"element={<Register/>}/>
               <Route path= "*" element= {<NotFound/>} />
             </Routes>

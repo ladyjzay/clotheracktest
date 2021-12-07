@@ -18,25 +18,46 @@ export default function ProductView(){
 	const [onSale, setOnSale] = useState(false)
 	const [inStock, setInStock] = useState('')
 
+	//order
+	const [orderId, setOrderId] = useState('')
+	const [userId, setUserId] = useState('')
+	const [cartList, setCartList] = useState([])
+	const [quantity, setQuantity] = useState('')
+	const [subTotal, setSubTotal] = useState('')
+	const [totalAmount, setTotalAmount] = useState('')
+	const [status, setStatus] = useState('') 
 
 
-	/*const addCart = (productId) => {
-		fetch(`http://localhost:4000/products/${productId}`, {
+
+	const addCart = (productId) => {
+		console.log(productId)
+		fetch(`http://localhost:4000/orders/order`, {
 			method: 'POST',
 			headers: {
 				"Content-Type" : "application/json",
 				Authorization: `Bearer ${localStorage.getItem("token")}`
 			},
 			body: JSON.stringify({
-				customer: user.id,
+				orderId: orderId,
+				userId: user.id,
 				cartList: [
-					productId: productId
-				]
+					productId: productId,
+					quantity: quantity,
+					subTotal: subTotal
+				],
+				//productId: productId,
+				//quantity: quantity, 
+				//subTotal: subTotal,
+				status: status,
+				totalAmount: totalAmount
 			})
 		})
-		.then(res => res.json())
+		.then(res =>{
+			//console.log(res)
+			res.json()
+		} )
 		.then(data => {
-			console.log(data)
+			//console.log(data)
 
 			if(data === true){
 				Swal.fire({
@@ -54,7 +75,50 @@ export default function ProductView(){
 			}
 
 		})
+	}
+
+		//retrieve Order details
+/*	const retrieveOrderDetails = (token) => {
+
+		fetch(`http://localhost:4000/orders/myOrder`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+
+			console.log(data)
+			setOrderId(data.orderId)
+			setUserId(data.userId)
+			setCartList(data.cartList)
+			setQuantity(data.quantity)
+			setSubTotal(data.subTotal)
+			setTotalAmount(data.totalAmount)
+			setStatus(data.status)
+		})
 	}*/
+
+	useEffect(() => {
+
+		fetch(`http://localhost:4000/orders/myOrder`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+
+			console.log(data)
+			setOrderId(data.orderId)
+			setUserId(data.userId)
+			setCartList(data.cartList)
+			setQuantity(data.quantity)
+			setSubTotal(data.subTotal)
+			setTotalAmount(data.totalAmount)
+			setStatus(data.status)
+		})
+	}, [productId])
 
 	useEffect(() => {
 		console.log(productId)
@@ -71,6 +135,8 @@ export default function ProductView(){
 			setInStock(data.inStock)
 		})
 	}, [productId])
+
+
 
 	return(
 

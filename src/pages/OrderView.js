@@ -22,7 +22,7 @@ export default function OrderView(){
 	useEffect(() => {
 		console.log(userId)
 
-		fetch(`http://localhost:4000/users/${userId}/order`)
+		fetch(`http://localhost:4000/orders/myOrder`)
 		.then(res => res.json())
 		.then(data => {
 			console.log(data)

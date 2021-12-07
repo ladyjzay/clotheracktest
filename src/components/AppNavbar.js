@@ -23,10 +23,14 @@ export default function AppNavbar(){
           				<NavDropdown.Item as={Link} to="/products/categories/dress" exact>Dress</NavDropdown.Item>
           				<NavDropdown.Item as={Link} to="/products/categories/accessory" exact>Accessories</NavDropdown.Item>
         			</NavDropdown>
+        			<NavDropdown title="Admin" id="basic-nav-dropdown">
+        				<NavDropdown.Item as={Link} to="/AdminProduct" exact>Products</NavDropdown.Item>
+        				<NavDropdown.Item as={Link} to="/AdminProduct" exact>Orders</NavDropdown.Item>
+        			</NavDropdown>
         			
         			{ (user.id !== null) ?
 						<Fragment>
-							<Nav.Link as={Link} to="/cart" exact>Cart</Nav.Link>
+							<Nav.Link as={Link} to="/myOrder" exact>Cart</Nav.Link>
 							<Nav.Link as={Link} to="/logout" exact>Logout</Nav.Link>
 						</Fragment>
 						:

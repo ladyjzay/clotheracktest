@@ -29,7 +29,7 @@ export default function ProductView(){
 
 
 
-	const addCart = (productId) => {
+	const addCart = async (productId) => {
 		console.log(productId)
 		fetch(`http://localhost:4000/orders/order`, {
 			method: 'POST',
@@ -40,31 +40,28 @@ export default function ProductView(){
 			body: JSON.stringify({
 				orderId: orderId,
 				userId: user.id,
-				cartList: [
-					productId: productId,
-					quantity: quantity,
-					subTotal: subTotal
-				],
-				//productId: productId,
-				//quantity: quantity, 
-				//subTotal: subTotal,
+				productId: productId,
+				quantity: 1, 
+				subTotal: subTotal,
 				status: status,
 				totalAmount: totalAmount
 			})
 		})
 		.then(res =>{
 			//console.log(res)
-			res.json()
+			return res.json()
 		} )
 		.then(data => {
 			//console.log(data)
 
-			if(data === true){
+			if(data){
 				Swal.fire({
 					title: 'Success',
 					icon: 'success',
 					text: 'Product added to cart'
 				})
+
+				history(-1)
 
 			} else { 
 				Swal.fire({
@@ -77,28 +74,6 @@ export default function ProductView(){
 		})
 	}
 
-		//retrieve Order details
-/*	const retrieveOrderDetails = (token) => {
-
-		fetch(`http://localhost:4000/orders/myOrder`, {
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`
-			}
-		})
-		.then(res => res.json())
-		.then(data => {
-
-			console.log(data)
-			setOrderId(data.orderId)
-			setUserId(data.userId)
-			setCartList(data.cartList)
-			setQuantity(data.quantity)
-			setSubTotal(data.subTotal)
-			setTotalAmount(data.totalAmount)
-			setStatus(data.status)
-		})
-	}*/
-
 	useEffect(() => {
 
 		fetch(`http://localhost:4000/orders/myOrder`, {
@@ -109,7 +84,7 @@ export default function ProductView(){
 		.then(res => res.json())
 		.then(data => {
 
-			console.log(data)
+			//console.log(data)
 			setOrderId(data.orderId)
 			setUserId(data.userId)
 			setCartList(data.cartList)
@@ -163,6 +138,7 @@ export default function ProductView(){
 							}*/}
 
 							<Button variant = "secondary" onClick={() => addCart(productId)}>Add to Cart</Button>
+							<Button variant = "secondary" className="mx-4" >Go Back</Button>
 							</Col>
 						</Row>
 						</Container>

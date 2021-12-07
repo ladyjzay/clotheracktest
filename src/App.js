@@ -9,13 +9,14 @@ import AppNavbar from './components/AppNavbar';
 import TopBanner from './components/TopBanner';
 import Footer from './components/Footer'
 
-import AddProduct from './pages/AddProduct'
+
+import AdminProduct from './pages/AdminProduct'
 import CatProducts from './pages/CatProducts'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import NotFound from './pages/NotFound';
-import OrderView from './pages/OrderView'
+//import OrderView from './pages/OrderView'
 import Products from './pages/Products'
 import ProductView from './pages/ProductView'
 import Register from './pages/Register';
@@ -76,13 +77,14 @@ function App() {
           <AppNavbar/>
             <Routes>
               <Route exact path ="/" element={<Home/>}/>
-              <Route exact path = "products/addProduct" element={<AddProduct/>}/>
+             
+              <Route exact path = "/AdminProduct" element={<AdminProduct/>}/>
               <Route exact path = "products/categories/:category" element={<CatProducts/>}/>
               <Route exact path ="/login" element={<Login/>}/>
               <Route exact path ="/logout" element={<Logout/>}/>
               <Route exact path = "/products" element={<Products/>}/>
               <Route exact path = "/products/:productId" element={<ProductView/>}/>
-              <Route exact path = "/cart" element={<OrderView/>}/> //...
+              
               <Route exact path = "/register"element={<Register/>}/>
               <Route path= "*" element= {<NotFound/>} />
             </Routes>

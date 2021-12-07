@@ -1,63 +1,60 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useEffect, useContext, Fragment} from 'react'
 import {Container, Row, Col, Card, Button} from 'react-bootstrap'
 import {useParams , useNavigate, Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
+import OrderCard from '../components/OrderCard'
+//import ProductCard from '../components/ProductCard'
+
 
 export default function OrderView(){
 
-	const {userId} = useParams()
 
-	const {user} = useContext(UserContext)
+		const [order, setOrder] = useState([])
 
-	const history = useNavigate()
-
-	const [customer, setCustomer] = useState('')
-	const [cartList, setCartList] = useState('')
-	const [totalAmount, setTotalAmount] = useState('')
-	const [purchasedOn, setPurchasedOn] = useState('')
-
-	//button for payment
-
-	useEffect(() => {
-		console.log(userId)
-
-		fetch(`http://localhost:4000/orders/myOrder`)
+		useEffect(() =>{
+			fetch(`http://localhost:4000/orders/myOrder`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
 		.then(res => res.json())
 		.then(data => {
 			console.log(data)
 
-			setCustomer(data.customer)
-			setCartList(data.cartList)
-			setTotalAmount(data.totalAmount)
-			setPurchasedOn(data.purchasedOn)
+			setOrder(data.map(order => {
+				return (
+					<OrderCard key={order.id} orderProp = {order}/>
+				)
+			}))
 		})
-	}, [userId])
+	}, [])
+
+	/*		const [product, setProduct] = useState([])
+
+
+		useEffect(() =>{
+		fetch('http://localhost:4000/products/all')
+		.then(res => res.json())
+		.then(data => {
+			console.log(data)
+
+			setProduct(data.map(product => {
+				return (
+					<OrderCard key={product.id} prodProp = {product}/>
+				)
+			}))
+		})
+	}, [])*/
 
 	return(
-		<Container>
-			<Row className="m-0 " style={{height: "603px"}}>
-				<h1>Cart</h1>
-				<Col>
-
-					<Card>
-						<Card.Body>
-							<Card.Title>{cartList}</Card.Title>
-							<Card.Subtitle>Description: </Card.Subtitle>
-							<Card.Text>{}</Card.Text>
-							<Card.Subtitle>Price:</Card.Subtitle>
-							<Card.Text>Php {totalAmount}</Card.Text>
-							{/*{user._id !== null ?
-								<Button variant = "secondary" onClick={() => orderItem(productId)}>Add to Cart</Button>
-								: 
-								<Link className = "btn btn-secondary btn-block" to = '/login'>Log in to Shop</Link>
-							}*/}
-
-							<Button variant = "secondary" >Pay</Button>
-						</Card.Body>	
-					</Card>	
-				</Col>	
-			</Row>	
-		</Container>	
+		<Fragment> 
+			<h1>Cart</h1>
+			<Container className="container-fluid justify-content-center">
+			<Row className="m-4">
+			{order}
+			</Row>
+			</Container>
+		</Fragment>
 	)
 }

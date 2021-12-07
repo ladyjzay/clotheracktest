@@ -5,6 +5,15 @@
  font-family: 'Poppins', sans-serif;
 }
 
+.cat-header {
+   text-align: center;
+   color: grey;
+   text-transform: uppercase;
+   padding: 2rem;
+   border-top: 1px solid #EBDED1;
+
+}
+
 .main-container{
   min-height: calc(100vh - 390px);
 }
@@ -78,6 +87,12 @@
   width: 40%;
 }
 
+.nav-link {
+  color:  grey !important;
+}
+
+
+
 
 .footer{
   background-color: #EBDED1;
@@ -92,3 +107,4 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800&family=Poppins:wght@200&display=swap');

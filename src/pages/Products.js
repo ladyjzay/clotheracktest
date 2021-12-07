@@ -24,7 +24,7 @@ export default function Products(){
 
 	return(
 		<Fragment> 
-			<h1>Products</h1>
+			<h1 className="cat-header">Products</h1>
 			<Container className="container-fluid justify-content-center">
 			<Row className="m-4">
 			{product}

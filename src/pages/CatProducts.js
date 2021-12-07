@@ -3,6 +3,7 @@ import {Container, Row} from 'react-bootstrap'
 import {useParams}from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 
+import '../App.css'
 
 export default function CatProducts(){
 
@@ -27,7 +28,7 @@ export default function CatProducts(){
 
 	return(
 		<Fragment> 
-			<h1>{category}</h1>
+			<h1 className="cat-header">{category}</h1>
 			<Container className="container-fluid justify-content-center">
 			<Row className="m-4">
 			{product}

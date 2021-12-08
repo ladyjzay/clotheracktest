@@ -16,7 +16,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import NotFound from './pages/NotFound';
-//import OrderView from './pages/OrderView'
+import OrderView from './pages/OrderView'
 import Products from './pages/Products'
 import ProductView from './pages/ProductView'
 import Register from './pages/Register';
@@ -53,7 +53,7 @@ function App() {
     })
     .then(res=> res.json())
     .then(data => {
-      console.log(data)
+      //console.log(data)
 
       if(typeof data._id !== "undefined"){
         setUser({
@@ -84,7 +84,7 @@ function App() {
               <Route exact path ="/logout" element={<Logout/>}/>
               <Route exact path = "/products" element={<Products/>}/>
               <Route exact path = "/products/:productId" element={<ProductView/>}/>
-              
+              <Route exact path = "/myOrder" element={<OrderView/>}/>
               <Route exact path = "/register"element={<Register/>}/>
               <Route path= "*" element= {<NotFound/>} />
             </Routes>

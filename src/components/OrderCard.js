@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useEffect, useContext, Fragment} from 'react'
 import {Col, Card, CardGroup, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -8,10 +8,10 @@ import '../App.css'
 
 export default function OrderCard({orderProp, prodProp}){
 
-	console.log(orderProp)
-	console.log(prodProp)
+	//console.log(orderProp)
+	//console.log(prodProp)
 
-	const {cartList, productId, quantity, subTotal, totalAmount, status, purchasedOn} = orderProp
+	const {cartList, productId, quantity, subTotal, totalAmount, status, purchasedOn, orderId} = orderProp
 
 	//const {name,description, price, _id, category, onSale, inStock, img} = prodProp
 
@@ -19,8 +19,8 @@ export default function OrderCard({orderProp, prodProp}){
 
 
 	//order
-	const [orderId, setOrderId] = useState('')
-	const [userId, setUserId] = useState('')
+	// const [orderId, setOrderId] = useState('')
+	// const [userId, setUserId] = useState('')
 	//const [cartList, setCartList] = useState([])
 	// const [quantity, setQuantity] = useState('')
 	// const [subTotal, setSubTotal] = useState('')
@@ -50,7 +50,7 @@ export default function OrderCard({orderProp, prodProp}){
 		})
 	}, [])
 
-		useEffect(() => {
+	/*	useEffect(() => {
 		console.log(productId)
 
 		fetch(`http://localhost:4000/products/${productId}`)
@@ -59,28 +59,38 @@ export default function OrderCard({orderProp, prodProp}){
 			console.log(data)
 
 		})
-	}, [productId])
+	}, [productId])*/
 
 
 
 
 
 		return(
+			<Fragment>
 				<Col md={4} className="text-center">
 					<CardGroup>
 					<Card className= 'm-3 border-light'>
 					<Card.Body >
 						<Card.Title>{orderId}</Card.Title>
-						<Card.Subtitle>{userId}</Card.Subtitle>
+						<Card.Subtitle>{user.id}</Card.Subtitle>
 						<Card.Text>{productId}</Card.Text>
 						<Card.Text>{totalAmount}</Card.Text>
 						<Card.Text>{status}</Card.Text>
-						<Card.Text>{cartList.map(product => <div>{product.name}</div>)}</Card.Text>
+						<Card.Text>{cartList.map(product => 
+							<div>{productId}
+								{product.name}
+								{quantity}
+
+							</div>
+					
+
+							)}</Card.Text>
 						<Card.Text>{purchasedOn}</Card.Text>
 						
 					</Card.Body>
 					</Card>
 					</CardGroup>
 				</Col>
+			</Fragment>
 		)
 }

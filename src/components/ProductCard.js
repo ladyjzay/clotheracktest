@@ -8,7 +8,7 @@ import '../App.css'
 
 export default function ProductCard({prodProp}){
 
-	console.log(prodProp)
+	//console.log(prodProp)
 	
 
 	const {name,description, price, _id, category, onSale, inStock, img} = prodProp
@@ -27,7 +27,7 @@ export default function ProductCard({prodProp}){
 
 
 	const addCart = async (_id) => {
-		console.log(_id)
+		//console.log(_id)
 		fetch(`http://localhost:4000/orders/order`, {
 			method: 'POST',
 			headers: {
@@ -49,12 +49,10 @@ export default function ProductCard({prodProp}){
 				totalAmount: totalAmount
 			})
 		})
-		.then(res =>{
-			//console.log(res)
+		.then(res => {
 			return res.json()
-		} )
+		})
 		.then(data => {
-			//console.log(data)
 
 			if(data){
 				Swal.fire({

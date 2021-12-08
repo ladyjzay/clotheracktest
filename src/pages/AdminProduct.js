@@ -1,8 +1,10 @@
-import {Fragment, useContext, useEffect, useState} from 'react'
+import {Fragment, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {Tabs, Tab} from 'react-bootstrap'
 import UserContext from '../UserContext'
 import AddProduct from '../components/AddProduct' 
+import AdminAllProducts from '../components/AdminAllProducts'
+import AdminEditProd from '../components/AdminEditProd'
 
 import '../App.css'
 
@@ -10,6 +12,7 @@ import '../App.css'
 export default function AdminProduct(){
 
 	const {user, setUser} = useContext(UserContext)
+
 
 	const retrieveUserDetails = (token) => {
 
@@ -31,21 +34,34 @@ export default function AdminProduct(){
 
 	}
 
+
+
 	return(
 		<Fragment>
-			<Tabs defaultActiveKey="allProduct" id="uncontrolled-tab-example" className="mb-3" tabClassName="text-secondary">
+			<Tabs 
+			id="uncontrolled-tab-example" 
+			className="mb-3" 
+			tabclassname="text-secondary"
+			>
 			
-				<Tab eventKey="allProduct" title="All Product">
-    		
+			<Tab eventKey="allProduct" title="All Product">
+				<div>
+    			<AdminAllProducts/>
+    			</div>
   			</Tab>
-			  <Tab eventKey="addProduct" title="Add Product">
+
+			 <Tab eventKey="addProduct" title="Add Product">
+			 	<div>
 			    <AddProduct/>
-			  </Tab>
-			  <Tab eventKey="editProduct" title="Edit Product">
-			    
-			  </Tab>
-			  <Tab eventKey="archiveProduct" title="Archive Product">
-			  </Tab>
+			    </div>
+			 </Tab>
+
+			 <Tab eventKey="editProduct" title="Edit Product">
+			    <AdminEditProd/>
+			 </Tab>
+
+			 <Tab eventKey="archiveProduct" title="Archive Product">
+			 </Tab>
 			</Tabs>
 		</Fragment>	
 	)

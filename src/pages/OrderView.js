@@ -1,60 +1,47 @@
-import {useState, useEffect, useContext, Fragment} from 'react'
-import {Container, Row, Col, Card, Button} from 'react-bootstrap'
-import {useParams , useNavigate, Link} from 'react-router-dom'
+import {Fragment, useContext} from 'react'
+import {Link} from 'react-router-dom'
+import {Tabs, Tab} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
 import OrderCard from '../components/OrderCard'
-//import ProductCard from '../components/ProductCard'
 
+export default function OrderView() {
 
-export default function OrderView(){
+	const {user, setUser} = useContext(UserContext)
 
+		const retrieveUserDetails = (token) => {
 
-		const [order, setOrder] = useState([])
-
-		useEffect(() =>{
-			fetch(`http://localhost:4000/orders/myOrder`, {
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`
+		fetch('http://localhost:4000/users/details', {
+			headers:{
+				Authorization: `Bearer ${token}`
 			}
 		})
 		.then(res => res.json())
 		.then(data => {
 			console.log(data)
 
-			setOrder(data.map(order => {
-				return (
-					<OrderCard key={order.id} orderProp = {order}/>
-				)
-			}))
+			setUser({
+				id: data._id,
+				isAdmin: data.isAdmin
+
+			})
 		})
-	}, [])
 
-	/*		const [product, setProduct] = useState([])
-
-
-		useEffect(() =>{
-		fetch('http://localhost:4000/products/all')
-		.then(res => res.json())
-		.then(data => {
-			console.log(data)
-
-			setProduct(data.map(product => {
-				return (
-					<OrderCard key={product.id} prodProp = {product}/>
-				)
-			}))
-		})
-	}, [])*/
+	}
 
 	return(
-		<Fragment> 
-			<h1>Cart</h1>
-			<Container className="container-fluid justify-content-center">
-			<Row className="m-4">
-			{order}
-			</Row>
-			</Container>
-		</Fragment>
+		<Fragment>
+			<Tabs defaultActiveKey="currentOrder" id="uncontrolled-tab-example" className="mb-3" tabClassName="text-secondary">
+			
+				<Tab eventKey="currentOrder" title="My Order">
+    		
+  			</Tab>
+			  <Tab eventKey="prev" title="Past Orders">
+			    
+			  </Tab>
+			</Tabs>
+		</Fragment>	
 	)
 }
+
+

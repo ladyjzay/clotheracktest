@@ -11,7 +11,7 @@ export default function Banner(){
 			<Row className="mx-0">
 				<Col className= "px-0">
 					<Image src="../images/banner.jpg" id="banner"/>
-					<Button id="shopnow-btn" href="categories">Shop Now</Button>
+					<Button id="shopnow-btn">Shop Now</Button>
 				</Col>
 			</Row>
 		</Fragment>

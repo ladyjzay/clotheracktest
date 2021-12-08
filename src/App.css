@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
  font-family: 'Poppins', sans-serif;
+ scroll-behaviour: smooth;
 }
 
 .cat-header {
@@ -89,6 +90,11 @@
 
 .nav-link {
   color:  grey !important;
+}
+
+.img-adminView{
+  width: 10rem;
+  max-height: 10rem;
 }
 
 

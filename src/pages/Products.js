@@ -16,7 +16,9 @@ export default function Products(){
 
 			setProduct(data.map(product => {
 				return (
+					<Fragment>
 					<ProductCard key={product.id} prodProp = {product}/>
+					</Fragment>
 				)
 			}))
 		})

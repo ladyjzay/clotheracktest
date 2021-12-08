@@ -8,14 +8,14 @@ import AdminProdCard from '../components/AdminProdCard'
 export default function AdminAllProducts(){
 
 	const [adminproduct, setAdminProduct] = useState([])
-
+	
 	useEffect(() => {
 		fetch('http://localhost:4000/products/all')
 		.then(res => res.json())
 		.then(data => {
 			//console.log(data)
 
-			setAdminProduct(data.map(adminproduct => {
+			setAdminProduct(data.map((adminproduct, index) => {
 				
 				return(
 					<Fragment>

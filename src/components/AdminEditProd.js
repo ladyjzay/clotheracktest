@@ -46,7 +46,7 @@ export default function AdminEditProd(){
 		<Row>
 			<Col>
 				<h1>Edit Product</h1>
-			<Form onSubmit={(e)=> searchProduct(e.target.value)}>
+			<Form>
 				<Form.Group controlId="search-product">
 					<Form.Label>Product Name: </Form.Label>
 					<Form.Control
@@ -55,7 +55,7 @@ export default function AdminEditProd(){
 						onChange = {(e) => setName(e.target.value)} 
 					/>
 				</Form.Group>
-    <Button variant = 'secondary' type= 'submit' id = 'submitBtn'>
+    <Button variant = 'secondary' type= 'submit' id = 'submitBtn' onClick={(e)=> searchProduct(e)}>
 											Search
 										</Button>
 			</Form>	

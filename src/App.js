@@ -78,7 +78,7 @@ function App() {
             <Routes>
               <Route exact path ="/" element={<Home/>}/>
              
-              <Route exact path = "/AdminProduct" element={<AdminProduct/>}/>
+              <Route path = "/AdminProduct" element={<AdminProduct/>}/>
               <Route exact path = "products/categories/:category" element={<CatProducts/>}/>
               <Route exact path ="/login" element={<Login/>}/>
               <Route exact path ="/logout" element={<Logout/>}/>

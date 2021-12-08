@@ -43,30 +43,27 @@ export default function AdminEditProd(){
 	return(
 		<Fragment>
 		<Container>
-		<Row>
-			<Col>
+		<Row className="m-0 " style={{height: "603px"}}>
+			<Col className="mt-5">
 				<h1>Edit Product</h1>
-			<Form>
-				<Form.Group controlId="search-product">
-					<Form.Label>Product Name: </Form.Label>
-					<Form.Control
-						type= 'name'
-						value= {name}
-						onChange = {(e) => setName(e.target.value)} 
-					/>
-				</Form.Group>
-    <Button variant = 'secondary' type= 'submit' id = 'submitBtn' onClick={(e)=> searchProduct(e)}>
+				<Form>
+					<Form.Group controlId="search-product">
+						<Form.Label>Product Name: </Form.Label>
+						<Form.Control
+							type= 'name'
+							value= {name}
+							onChange = {(e) => setName(e.target.value)} 
+						/>
+					</Form.Group>
+    				<Button variant = 'secondary' type= 'submit' id = 'submitBtn' onClick={(e)=> searchProduct(e)}>
 											Search
-										</Button>
-			</Form>	
+					</Button>
+					</Form>	
 			</Col>
-		</Row>
-			<Row>
-
 			{adminEditProduct}
-			</Row>
+		</Row>
   		
-			</Container>
+		</Container>
 		</Fragment>
 	)
 	

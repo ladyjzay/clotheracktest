@@ -15,7 +15,7 @@ export default function AdminAllProducts(){
 		.then(data => {
 			//console.log(data)
 
-			setAdminProduct(data.map((adminproduct, index) => {
+			setAdminProduct(data.map(adminproduct => {
 				
 				return(
 					<Fragment>

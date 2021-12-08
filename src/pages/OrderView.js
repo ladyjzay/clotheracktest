@@ -4,6 +4,7 @@ import {Tabs, Tab} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
 import OrderCard from '../components/OrderCard'
+import CurrentOrder from '../components/CurrentOrder'
 
 export default function OrderView() {
 
@@ -34,7 +35,7 @@ export default function OrderView() {
 			<Tabs defaultActiveKey="currentOrder" id="uncontrolled-tab-example" className="mb-3" tabClassName="text-secondary">
 			
 				<Tab eventKey="currentOrder" title="My Order">
-    		
+    			<CurrentOrder />
   			</Tab>
 			  <Tab eventKey="prev" title="Past Orders">
 			    

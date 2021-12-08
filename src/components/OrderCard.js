@@ -92,7 +92,7 @@ export default function OrderCard(){
 		return(
 			<Fragment>
 			<Container>
-			<Row>
+			<Row className="my-4">
 				
 			Order ID: {orderId} <br/>
 			Date purchase : {purchasedOn}
@@ -109,7 +109,7 @@ export default function OrderCard(){
 					  <tbody>
 					  	{renderCartListCards(cartList)}
 					  	<tr>
-					  		<td>
+					  		<td colSpan="5" className="text-end">
 					  		Total Amount : {totalAmount}
 					  		</td>
 					  	</tr>

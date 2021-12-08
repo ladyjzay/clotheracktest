@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 
 import AdminProduct from './pages/AdminProduct'
 import CatProducts from './pages/CatProducts'
+import Checkout from './pages/Checkout'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
@@ -80,6 +81,7 @@ function App() {
              
               <Route path = "/AdminProduct" element={<AdminProduct/>}/>
               <Route exact path = "products/categories/:category" element={<CatProducts/>}/>
+              <Route exact path = "/checkout" element= {<Checkout/>}/>
               <Route exact path ="/login" element={<Login/>}/>
               <Route exact path ="/logout" element={<Logout/>}/>
               <Route exact path = "/products" element={<Products/>}/>

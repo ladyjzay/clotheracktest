@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext, Fragment} from 'react'
-import {Col, Card, CardGroup, Button} from 'react-bootstrap'
+import {Col, Table, Button, Row, Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
@@ -73,17 +73,16 @@ export default function OrderCard(){
 	function renderCartListCards (cartList) {
 		return cartList.map(cartItem => {
 			return (
-				<Card className= 'm-3 border-light'>
-					<Card.Body >
-						<Card.Title>{cartItem.productId}</Card.Title>
-						<Card.Subtitle>{}</Card.Subtitle>
-						<Card.Text>TESTING</Card.Text>
-						<Card.Text>{cartItem.quantity}</Card.Text>
-						<Card.Text>{cartItem.subTotal}</Card.Text>
-						<Card.Text></Card.Text>
-						// <Card.Text>{purchasedOn}</Card.Text>
-					</Card.Body>
-				</Card>
+				
+					<tr>
+						<td>{cartItem.productId}</td>
+						<td>{cartItem.productId.name}</td>
+						<td>{cartItem.productId.price}</td>
+						<td>{cartItem.quantity}</td>
+						<td>{cartItem.subTotal}</td>
+					</tr>
+				
+				
 			)
 		});
 	}
@@ -92,13 +91,33 @@ export default function OrderCard(){
 
 		return(
 			<Fragment>
-				<Col md={4} className="text-center">
-					<CardGroup>
-						{renderCartListCards(cartList)}
+			<Container>
+			<Row>
+				
+			Order ID: {orderId} <br/>
+			Date purchase : {purchasedOn}
+			<Table striped bordered hover>
+					  <thead>
+					    <tr>
+					      <th>Product</th>
+					      <th>Name</th>
+					      <th>Price</th>
+					      <th>Quantity</th>
+					      <th>Subtotal</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{renderCartListCards(cartList)}
+					  	<tr>
+					  		<td>
+					  		Total Amount : {totalAmount}
+					  		</td>
+					  	</tr>
+					  </tbody>
 
-					</CardGroup>
-				</Col>
-				{totalAmount}
+					</Table>
+			</Row>
+			</Container>
 			</Fragment>
 		)
 }

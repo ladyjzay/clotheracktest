@@ -10,6 +10,7 @@ export default function AdminOrderCard({adminOrderProp}){
 
 	const {_id, userId, cartList, totalAmount, purchasedOn, status } = adminOrderProp
 
+
 	const {user} = useContext(UserContext)
 
 	function renderCartListCards (cartList) {
@@ -17,8 +18,8 @@ export default function AdminOrderCard({adminOrderProp}){
 			return (
 				<tr>
 						<td>{cartItem.productId}</td>
-						<td>{cartItem.productId.name}</td>
-						<td>{cartItem.productId.price}</td>
+						<td>{}</td>
+						<td>{}</td>
 						<td>{cartItem.quantity}</td>
 						<td>{cartItem.subTotal}</td>
 					</tr>
@@ -33,6 +34,7 @@ export default function AdminOrderCard({adminOrderProp}){
 			<Row className="my-4">
 				
 			Order ID: {_id} <br/>
+			User ID: {userId} <br/>
 			Date purchase : {purchasedOn}
 			<Table striped bordered hover>
 					  <thead>

@@ -131,13 +131,13 @@ export default function ProductView(){
 							<Card.Text>{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
 							<Card.Text>Php {price}</Card.Text>
-							{/*{user._id !== null ?
-								<Button variant = "secondary" onClick={() => orderItem(productId)}>Add to Cart</Button>
-								: 
-								<Link className = "btn btn-secondary btn-block" to = '/login'>Log in to Shop</Link>
-							}*/}
+						
 
-							<Button variant = "secondary" onClick={() => addCart(productId)}>Add to Cart</Button>
+							{ (user.id !== null && user.isAdmin === false) ?
+								<Button variant = "secondary" onClick={() => addCart(productId)}>Add to Cart</Button>
+								:
+								<Button variant = "secondary" as={Link} to="/login" >Log in to Shop</Button>
+							}
 							<Button variant = "secondary" className="mx-4" >Go Back</Button>
 							</Col>
 						</Row>

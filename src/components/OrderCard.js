@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext, Fragment} from 'react'
-import {Col, Table, Button, Row, Container} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Col, Table, Button, Row, Container, Modal} from 'react-bootstrap'
+import {Navigate, useNavigate, Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
 
@@ -17,6 +17,7 @@ export default function OrderCard(){
 
 	const {user} = useContext(UserContext)
 
+	const history = useNavigate()
 
 	//order
 	const [orderId, setOrderId] = useState('')
@@ -34,6 +35,10 @@ export default function OrderCard(){
 	const [price, setPrice] = useState('')
 	const [category, setCategory] = useState('')
 	const [inStock, setInStock] = useState('')
+
+	const [show, setShow] = useState(false);
+
+
 
 	useEffect(() => {
 
@@ -81,7 +86,7 @@ export default function OrderCard(){
 						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>
 						<td>{cartItem.subTotal}</td>
-						<td><Button variant = 'secondary' type= 'submit' id = 'submitBtn' >Remove</Button></td>
+						<td><Button variant = 'secondary' type= 'submit' id = 'submitBtn' size="sm">Remove</Button></td>
 					</tr>
 				
 				
@@ -89,16 +94,26 @@ export default function OrderCard(){
 		});
 	}
 
-	// function deleteOrder(e){
-	// 	e.preventDefault(e);
-
-	// 	fetch('http://localhost:4000/orders/delete', {
-	// 		method: 'DELETE',
-	// 		headers: {
-	// 			'Content-Type' : ''
-	// 		}
-	// 	})
+	// function confirmDelete(e) {
+		
 	// }
+
+	function deleteOrder(e){
+		e.preventDefault(e);
+
+		fetch(`http://localhost:4000/orders/${orderId}/delete`, {
+			method: 'DELETE',
+			headers: {
+				Authorization:  `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+				console.log(data)
+
+				history('/')
+		})
+	}
 
 
 		return(
@@ -110,7 +125,7 @@ export default function OrderCard(){
 				
 			Order ID: {orderId} <br/>
 			Date purchase : {purchasedOn}
-			<Button variant = 'secondary' type= 'submit' id = 'submitBtn' >Delete Order</Button>
+			<Button variant = 'secondary' type= 'submit' id = 'delete-btn' onClick={(e) => { if (window.confirm('Are you sure you want to empty your cart?')) deleteOrder(e)} } >Delete Order</Button>
 			<Table striped bordered hover>
 					  <thead>
 					    <tr>
@@ -135,5 +150,10 @@ export default function OrderCard(){
 			</Row>
 			</Container>
 			</Fragment>
+
+
 		)
+
+
+
 }

@@ -2,6 +2,7 @@ import {useState} from 'react'
 //import {Row, Col, Card, Button} from 'react-bootstrap'
 import {Row, Col, Card, Container, Button, ButtonGroup} from 'react-bootstrap'
 //import {Link} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 import '../App.css'
 
@@ -9,9 +10,36 @@ export default function AdminEditProdCard({adminEditProdProp}){
 
 	console.log(adminEditProdProp)
 
-	const {name, description, price, _id, img, inStock} = adminEditProdProp
+	const {name, description, price, _id, img, inStock, isActive} = adminEditProdProp
 
 
+	function archiveProduct(e){
+		e.preventDefault(e);
+
+		fetch(`http://localhost:4000/products/${_id}/archive`, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data){
+				Swal.fire({
+					title: 'Archive Successful!',
+					icon: 'success',
+					text: 'Product archived'
+				})
+				
+			} else {
+				Swal.fire({
+					title: 'Authentication Failed',
+					icon: 'error',
+					text: 'Check your login details'
+				})
+			}
+		})
+	}
 	return(
 		<Container>
 		<Row className = "my-3">
@@ -38,10 +66,14 @@ export default function AdminEditProdCard({adminEditProdProp}){
 
 						<Col md={3} className= "my-auto">
 							<ButtonGroup aria-label="Basic example">
-  <Button variant="secondary" >Edit</Button>
-  <Button variant="secondary"className="mx-3">Archive</Button>
-  
-</ButtonGroup>
+								  <Button variant="secondary" >Edit</Button>
+								  { (isActive === true) ?
+								  <Button variant="secondary"className="mx-3" onClick={(e)=> archiveProduct(e)} >Archive</Button>
+								  : 
+								  <Button variant="secondary"className="mx-3" onClick={(e)=> archiveProduct(e)} >Activate</Button>
+
+								  }
+							</ButtonGroup>
 						</Col>
 						</Row>
 					</Container>

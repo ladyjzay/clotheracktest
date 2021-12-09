@@ -75,8 +75,7 @@ export default function CheckoutCard(){
 						<td>{cartItem.quantity}</td>
 						<td>{cartItem.subTotal}</td>
 					</tr>
-				
-				
+					
 			)
 		});
 	}

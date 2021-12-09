@@ -25,7 +25,7 @@ export default function AppNavbar(){
         			</NavDropdown>
         			<NavDropdown title="Admin" id="basic-nav-dropdown">
         				<NavDropdown.Item as={Link} to="/AdminProduct" exact>Products</NavDropdown.Item>
-        				<NavDropdown.Item as={Link} to="/AdminProduct" exact>Orders</NavDropdown.Item>
+        				<NavDropdown.Item as={Link} to="/AdminOrderView" exact>Orders</NavDropdown.Item>
         			</NavDropdown>
         			
         			{ (user.id !== null) ?

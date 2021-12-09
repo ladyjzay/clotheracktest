@@ -14,10 +14,14 @@ export default function Checkout() {
 	// Fetch all user details to be used for shipping
 	const {user, setUser} = useContext(UserContext)
 
+	const history = useNavigate()
+
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [address, setAddress] = useState('')
 	const [mobileNo, setMobileNo] = useState('')
+
+	const [orderId, setOrderId] = useState('')
 
 	useEffect(() => {
 
@@ -34,6 +38,61 @@ export default function Checkout() {
 		 	setMobileNo(data.mobileNo)
 		})
 	}, [])
+
+	useEffect(() => {
+
+		fetch(`http://localhost:4000/orders/myOrder`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			data = data[0];
+			console.log(data)
+			
+			if(data._id !== undefined){
+			setOrderId(data._id)
+			} else {
+				setOrderId('')
+			}
+			
+		})
+	}, [])
+
+	console.log(orderId)
+
+	function archiveOrder(e) {
+		e.preventDefault(e);
+
+		fetch(`http://localhost:4000/orders/${orderId}/archive`, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			
+			if(data){
+				Swal.fire({
+					title: 'Payment Successful!',
+					icon: 'success',
+					text: 'Thank you for shopping'
+				})
+
+				history('/')
+				
+			} else {
+				Swal.fire({
+					title: 'Authentication Failed',
+					icon: 'error',
+					text: 'Check your login details'
+				})
+			}
+		})
+
+	}
 
 	return (
 	<Fragment>
@@ -69,7 +128,7 @@ export default function Checkout() {
 		<CheckoutCard/>
 		</Row>
 		<Row className="mb-5">
-	   <Link className= "btn btn-secondary mx-2" to = {`/`}>CHECKOUT AND PAY</Link>
+	   <Link className= "btn btn-secondary mx-2" to = {`/`} onClick={(e)=> archiveOrder(e)} >CHECKOUT AND PAY</Link>
 	   	</Row>
 	 </Container>
 	</Fragment>

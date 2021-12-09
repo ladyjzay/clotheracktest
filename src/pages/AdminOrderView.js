@@ -3,12 +3,14 @@ import {Link} from 'react-router-dom'
 import {Tabs, Tab, Col, Row, Container} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
-import OrderCard from '../components/OrderCard'
+import AdminOrderCard from '../components/AdminOrderCard'
 
-export default function OrderView() {
+export default function AdminOrderView() {
 
 	const {user, setUser} = useContext(UserContext)
-	const [orderId, setOrderId] = useState('')
+	//const [orderId, setOrderId] = useState('')
+
+	const [order, setOrder] = useState([])
 
 		const retrieveUserDetails = (token) => {
 
@@ -32,47 +34,38 @@ export default function OrderView() {
 
 		useEffect(() => {
 
-		fetch(`http://localhost:4000/orders/myOrder`, {
+		fetch(`http://localhost:4000/orders/allOrder`, {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("token")}`
 			}
 		})
 		.then(res => res.json())
 		.then(data => {
-			data = data[0];
+			
 			console.log(data)
-		
-			setOrderId(data._id)
-		
-			console.log(orderId)
+			
+			setOrder(data.map(order => {
+				return (
+					<Fragment>
+						<AdminOrderCard key= {order.id} adminOrderProp = {order}/>
+					</Fragment>
+				)
+			}))
+			
 		})
 	}, [])
 
 	return(
 
 		<Fragment>
-		 	<Container>
-			<Tabs defaultActiveKey="currentOrder" id="uncontrolled-tab-example" className="mb-3" tabClassName="text-secondary">
-			
-				<Tab eventKey="currentOrder" title="My Order">
-    				<Container>
-    					<Row className="mb-5 my-auto">
-    			
-    						<OrderCard/>
-    						<Col className="text-end">
-    							<Link className= "btn btn-secondary mx-2" to = {`/checkout`}>PROCEED TO CHECKOUT</Link>
-  							</Col>
-  						</Row>
-  					</Container>
-  				</Tab>
-			  
-			  	<Tab eventKey="prev" title="Past Orders">
-			    
-			 	 </Tab>
-			</Tabs>
+		
+			<Container className="container-fluid justify-content-center">
+		 	<h1>Orders</h1>
+			<Row className="m-4">
+			{order}
+			</Row>
 			</Container>
 		</Fragment>	
 	)
 }
-
 

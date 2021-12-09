@@ -9,7 +9,7 @@ import AppNavbar from './components/AppNavbar';
 import TopBanner from './components/TopBanner';
 import Footer from './components/Footer'
 
-
+import AdminOrderView from './pages/AdminOrderView'
 import AdminProduct from './pages/AdminProduct'
 import CatProducts from './pages/CatProducts'
 import Checkout from './pages/Checkout'
@@ -78,7 +78,8 @@ function App() {
           <AppNavbar/>
             <Routes>
               <Route exact path ="/" element={<Home/>}/>
-             
+
+             <Route path = "/AdminOrderView" element={<AdminOrderView/>}/>
               <Route path = "/AdminProduct" element={<AdminProduct/>}/>
               <Route exact path = "products/categories/:category" element={<CatProducts/>}/>
               <Route exact path = "/checkout" element= {<Checkout/>}/>

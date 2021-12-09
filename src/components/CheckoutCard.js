@@ -6,14 +6,7 @@ import UserContext from '../UserContext'
 
 import '../App.css'
 
-export default function OrderCard(){
-
-	//console.log(orderProp)
-	//console.log(prodProp)
-
-	//const {cartList, productId, quantity, subTotal, totalAmount, status, purchasedOn, orderId} = orderProp
-	//console.log(cartList)
-	//const {name,description, price, _id, category, onSale, inStock, img} = prodProp
+export default function CheckoutCard(){
 
 	const {user} = useContext(UserContext)
 
@@ -27,7 +20,7 @@ export default function OrderCard(){
 	const [totalAmount, setTotalAmount] = useState('')
 	const [status, setStatus] = useState('') 
 	const [purchasedOn, setPurchasedOn] = useState('')
-	console.log(orderId)
+	//console.log(orderId)
 	//prod
 	const [name, setName] = useState('')
 	//const [productId, setProductId] = useState('')
@@ -81,24 +74,12 @@ export default function OrderCard(){
 						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>
 						<td>{cartItem.subTotal}</td>
-						<td><Button variant = 'secondary' type= 'submit' id = 'submitBtn' >Remove</Button></td>
 					</tr>
 				
 				
 			)
 		});
 	}
-
-	// function deleteOrder(e){
-	// 	e.preventDefault(e);
-
-	// 	fetch('http://localhost:4000/orders/delete', {
-	// 		method: 'DELETE',
-	// 		headers: {
-	// 			'Content-Type' : ''
-	// 		}
-	// 	})
-	// }
 
 
 		return(
@@ -108,7 +89,6 @@ export default function OrderCard(){
 				
 			Order ID: {orderId} <br/>
 			Date purchase : {purchasedOn}
-			<Button variant = 'secondary' type= 'submit' id = 'submitBtn' >Delete Order</Button>
 			<Table striped bordered hover>
 					  <thead>
 					    <tr>
@@ -117,7 +97,6 @@ export default function OrderCard(){
 					      <th>Price</th>
 					      <th>Quantity</th>
 					      <th>Subtotal</th>
-					      <th>Action</th>
 					    </tr>
 					  </thead>
 					  <tbody>

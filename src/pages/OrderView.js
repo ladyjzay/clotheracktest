@@ -31,24 +31,23 @@ export default function OrderView() {
 
 	return(
 		<Fragment>
-		 	<Container style={{height: "603px"}}>
+		 	<Container>
 			<Tabs defaultActiveKey="currentOrder" id="uncontrolled-tab-example" className="mb-3" tabClassName="text-secondary">
 			
 				<Tab eventKey="currentOrder" title="My Order">
-
-    			<Container>
-    			<Row className="mb-5 my-auto">
-
-    			<OrderCard/>
-    			<Col className="text-end">
-    			<Link className= "btn btn-secondary mx-2" to = {`/checkout`}>PROCEED TO CHECKOUT</Link>
-  				</Col>
-  				</Row>
-  				</Container>
-  			</Tab>
-			  <Tab eventKey="prev" title="Past Orders">
+    				<Container>
+    					<Row className="mb-5 my-auto">
+    						<OrderCard/>
+    						<Col className="text-end">
+    							<Link className= "btn btn-secondary mx-2" to = {`/checkout`}>PROCEED TO CHECKOUT</Link>
+  							</Col>
+  						</Row>
+  					</Container>
+  				</Tab>
+			  
+			  	<Tab eventKey="prev" title="Past Orders">
 			    
-			  </Tab>
+			 	 </Tab>
 			</Tabs>
 			</Container>
 		</Fragment>	

@@ -7,7 +7,7 @@ import {Row, Col, Form, Button, CardGroup,Card, Image, Table,Container} from 're
 import {Navigate, useNavigate, Link} from 'react-router-dom';
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext';
-import OrderCard from '../components/OrderCard'
+import CheckoutCard from '../components/CheckoutCard'
 
 export default function Checkout() {
 
@@ -66,7 +66,7 @@ export default function Checkout() {
 		</Row>	
 		<Row>
 		<h1>ORDERS</h1>
-		<OrderCard/>
+		<CheckoutCard/>
 		</Row>
 		<Row className="mb-5">
 	   <Link className= "btn btn-secondary mx-2" to = {`/`}>CHECKOUT AND PAY</Link>

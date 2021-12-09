@@ -1,6 +1,6 @@
 import {Fragment, useContext} from 'react'
 import {Link} from 'react-router-dom'
-import {Tabs, Tab} from 'react-bootstrap'
+import {Tabs, Tab, Container} from 'react-bootstrap'
 import UserContext from '../UserContext'
 import AddProduct from '../components/AddProduct' 
 import AdminAllProducts from '../components/AdminAllProducts'
@@ -38,31 +38,30 @@ export default function AdminProduct(){
 
 	return(
 		<Fragment>
-			<Tabs 
-			id="uncontrolled-tab-example" 
-			className="mb-3" 
-			tabclassname="text-secondary"
-			>
-			
-			<Tab eventKey="allProduct" title="All Product">
-				<div>
-    			<AdminAllProducts/>
-    			</div>
-  			</Tab>
+			<Container>
+				<Tabs 
+				id="admin-tab" 
+				className="mb-3" 
+				tabclassname="text-secondary"
+				>
+				
+					<Tab eventKey="allProduct" title="All Product">
+						<div>
+		    			<AdminAllProducts/>
+		    			</div>
+		  			</Tab>
 
-			 <Tab eventKey="addProduct" title="Add Product">
-			 	<div>
-			    <AddProduct/>
-			    </div>
-			 </Tab>
+					 <Tab eventKey="addProduct" title="Add Product">
+					 	<div>
+					    <AddProduct/>
+					    </div>
+					 </Tab>
 
-			 <Tab eventKey="editProduct" title="Edit Product">
-			    <AdminEditProd/>
-			 </Tab>
-
-			 <Tab eventKey="archiveProduct" title="Archive Product">
-			 </Tab>
-			</Tabs>
+					 <Tab eventKey="editProduct" title="Edit Product">
+					    <AdminEditProd/>
+					 </Tab>
+				 </Tabs>
+			</Container>
 		</Fragment>	
 	)
 }

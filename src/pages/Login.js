@@ -93,9 +93,7 @@ export default function Login(){
 		<Fragment>
 			<Row className="m-0 " style={{height: "603px"}}>
 				<Card className="text-black my-auto" border="0" >
-					<Card.Img src="../images/login.jpg" alt="login" id="login-img"/>
-					 <Card.ImgOverlay>
-					 	<Row className="m-0 mt-5 p-5" >
+					 	<Row className="m-0 mt-5 p-5" id="bg-img" >
 							<Col md={3} className="mx-auto text-center">
 								<Form onSubmit={(e)=>authenticate(e)}>
 									<Form.Group controlId= "userEmail">
@@ -137,7 +135,6 @@ export default function Login(){
 								</Form>
 							</Col>
 						</Row>
-					</Card.ImgOverlay>
 				</Card>
 			</Row>
 		</Fragment>

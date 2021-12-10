@@ -30,6 +30,38 @@ export default function AdminEditProdCard({adminEditProdProp}){
 					icon: 'success',
 					text: 'Product archived'
 				})
+
+				window.location.reload(false);
+				
+			} else {
+				Swal.fire({
+					title: 'Authentication Failed',
+					icon: 'error',
+					text: 'Check your login details'
+				})
+			}
+		})
+	}
+
+	function reactivateProduct(e){
+	
+
+		fetch(`http://localhost:4000/products/${_id}/reactivate`, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data){
+				console.log(data)
+				Swal.fire({
+					title: 'Success!',
+					icon: 'success',
+					text: 'Product is now available'
+				})
+				 window.location.reload(false);
 				
 			} else {
 				Swal.fire({
@@ -70,7 +102,7 @@ export default function AdminEditProdCard({adminEditProdProp}){
 								  { (isActive === true) ?
 								  <Button variant="secondary"className="mx-3" onClick={(e)=> archiveProduct(e)} >Archive</Button>
 								  : 
-								  <Button variant="secondary"className="mx-3" onClick={(e)=> archiveProduct(e)} >Activate</Button>
+								  <Button variant="secondary"className="mx-3" onClick={(e)=> reactivateProduct(e)} >Activate</Button>
 
 								  }
 							</ButtonGroup>

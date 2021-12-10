@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom'
 import {Tabs, Tab, Col, Row, Container} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
-import AdminOrderCard from '../components/AdminOrderCard'
+import OrderHistoryCard from '../components/OrderHistoryCard'
 
-export default function AdminOrderView() {
+export default function OrderHistoryView() {
 
 	const {user, setUser} = useContext(UserContext)
 	//const [orderId, setOrderId] = useState('')
@@ -34,7 +34,7 @@ export default function AdminOrderView() {
 
 		useEffect(() => {
 
-		fetch(`http://localhost:4000/orders/allOrder`, {
+		fetch(`http://localhost:4000/users/myOrderHistory`, {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("token")}`
 			}
@@ -42,12 +42,12 @@ export default function AdminOrderView() {
 		.then(res => res.json())
 		.then(data => {
 			
-			//console.log(data)
+			console.log(data)
 			
 			setOrder(data.map(order => {
 				return (
 					<Fragment>
-						<AdminOrderCard key= {order.id} adminOrderProp = {order}/>
+						<OrderHistoryCard key= {order.id} orderHistoryProp = {order}/>
 					</Fragment>
 				)
 			}))

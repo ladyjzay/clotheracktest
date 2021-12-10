@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext, Fragment} from 'react'
-import {Col, Table, Button, Row, Container} from 'react-bootstrap'
+import {Image, Col, Table, Button, Row, Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
@@ -23,7 +23,7 @@ export default function CheckoutCard(){
 	//console.log(orderId)
 	//prod
 	const [name, setName] = useState('')
-	//const [productId, setProductId] = useState('')
+	const [productId, setProductId] = useState('')
 	const [price, setPrice] = useState('')
 	const [category, setCategory] = useState('')
 	const [inStock, setInStock] = useState('')
@@ -44,6 +44,7 @@ export default function CheckoutCard(){
 		 	setOrderId(data._id)
 			setUserId(data.userId)
 			setCartList(data.cartList)
+			setProductId(data.productId)
 			// setQuantity(data.quantity)
 			// setSubTotal(data.subTotal)
 			setTotalAmount(data.totalAmount)
@@ -69,7 +70,7 @@ export default function CheckoutCard(){
 			return (
 				
 					<tr>
-						<td>{cartItem.productId}</td>
+						<td><Image src={`../../images/${cartItem.productId.name}.jpg`} className="rounded mx-auto d-block" style={{ height: "10rem"}} /></td>
 						<td>{cartItem.productId.name}</td>
 						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>

@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext, Fragment} from 'react'
-import {Col, Table, Button, Row, Container, Modal} from 'react-bootstrap'
+import {Image, Col, Table, Button, Row, Container, Modal} from 'react-bootstrap'
 import {Navigate, useNavigate, Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
@@ -10,10 +10,6 @@ export default function OrderCard(){
 
 	//console.log(orderProp)
 	//console.log(prodProp)
-
-	//const {cartList, productId, quantity, subTotal, totalAmount, status, purchasedOn, orderId} = orderProp
-	//console.log(cartList)
-	//const {name,description, price, _id, category, onSale, inStock, img} = prodProp
 
 	const {user} = useContext(UserContext)
 
@@ -31,12 +27,12 @@ export default function OrderCard(){
 	console.log(orderId)
 	//prod
 	const [name, setName] = useState('')
-	//const [productId, setProductId] = useState('')
+	const [productId, setProductId] = useState([])
 	const [price, setPrice] = useState('')
 	const [category, setCategory] = useState('')
 	const [inStock, setInStock] = useState('')
 
-	const [show, setShow] = useState(false);
+	// const [show, setShow] = useState(false);
 
 
 
@@ -56,24 +52,15 @@ export default function OrderCard(){
 		 	setOrderId(data._id)
 			setUserId(data.userId)
 			setCartList(data.cartList)
+			setProductId(data.productId)
 			// setQuantity(data.quantity)
 			// setSubTotal(data.subTotal)
 			setTotalAmount(data.totalAmount)
 			setStatus(data.status)
 			setPurchasedOn(data.purchasedOn)
+
 		})
 	}, [])
-
-	// 	useEffect(() => {
-	// 	console.log(productId)
-
-	// 	fetch(`http://localhost:4000/products/${productId}`)
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		console.log(data)
-
-	// 	})
-	// }, [productId])
 
 
 	function renderCartListCards (cartList) {
@@ -81,7 +68,7 @@ export default function OrderCard(){
 			return (
 				
 					<tr>
-						<td>{cartItem.productId}</td>
+						<td><Image src={`../../images/${cartItem.productId.name}.jpg`} className="rounded mx-auto d-block" style={{ height: "10rem"}} /></td>
 						<td>{cartItem.productId.name}</td>
 						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>
@@ -94,12 +81,27 @@ export default function OrderCard(){
 		});
 	}
 
-	// function confirmDelete(e) {
-		
-	// }
+
+	function confirmDelete(e) {
+		Swal.fire({
+  			title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+ 			 if (result.isConfirmed) {
+  			deleteOrder(result)
+  			console.log(result)
+  }
+})
+	}
 
 	function deleteOrder(e){
-		e.preventDefault(e);
+		// e.preventDefault(e)
+		console.log(orderId)
 
 		fetch(`http://localhost:4000/orders/${orderId}/delete`, {
 			method: 'DELETE',
@@ -111,6 +113,11 @@ export default function OrderCard(){
 		.then(data => {
 				console.log(data)
 
+				  Swal.fire(
+     			 'Deleted!',
+      			'Your file has been deleted.',
+      			'success'
+    	)
 				history('/')
 		})
 	}
@@ -120,12 +127,12 @@ export default function OrderCard(){
 
 			
 			<Fragment>
-			<Container>
+			<Container >
 			<Row className="my-4">
 				
 			Order ID: {orderId} <br/>
 			Date purchase : {purchasedOn}
-			<Button variant = 'secondary' type= 'submit' id = 'delete-btn' onClick={(e) => { if (window.confirm('Are you sure you want to empty your cart?')) deleteOrder(e)} } >Delete Order</Button>
+			<Button variant = 'secondary' type= 'submit' id = 'delete-btn' onClick={(e) => confirmDelete(e)}>Delete Order</Button>
 			<Table striped bordered hover>
 					  <thead>
 					    <tr>

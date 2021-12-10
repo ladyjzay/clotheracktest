@@ -4,6 +4,7 @@ import {Tabs, Tab, Col, Row, Container} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
 import OrderCard from '../components/OrderCard'
+import OrderHistoryView from '../components/OrderHistoryView'
 
 export default function OrderView() {
 
@@ -51,12 +52,13 @@ export default function OrderView() {
 	return(
 
 		<Fragment>
-		 	<Container>
-			<Tabs defaultActiveKey="currentOrder" id="uncontrolled-tab-example" className="mb-3" tabClassName="text-secondary">
+		 	<Container >
+		 	<Row >
+			<Tabs defaultActiveKey="currentOrder" className="mt-5 tabs-link" tabClassName="text-secondary">
 			
 				<Tab eventKey="currentOrder" title="My Order">
     				<Container>
-    					<Row className="mb-5 my-auto">
+    					<Row className="mb-5 ">
     			
     						<OrderCard/>
     						<Col className="text-end">
@@ -67,9 +69,17 @@ export default function OrderView() {
   				</Tab>
 			  
 			  	<Tab eventKey="prev" title="Past Orders">
-			    
+			    	<Container>
+    					<Row className="mb-5">
+    			
+    						<OrderHistoryView/>
+    						<Col className="text-end">
+  							</Col>
+  						</Row>
+  					</Container>
 			 	 </Tab>
 			</Tabs>
+			</Row>
 			</Container>
 		</Fragment>	
 	)

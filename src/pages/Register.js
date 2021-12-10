@@ -100,8 +100,8 @@ export default function Register(){
 			<Navigate to="/" />
 		:
 */		<Fragment>
-			<h1>Register</h1>
-			<Row className="m-0 my-auto" style={{height: "603px"}}>
+			<h1 className="cat-header">Register</h1>
+			<Row className="m-0 my-auto mb-5" style={{height: "603px"}}>
 				<Col md={4} className= "mx-auto">
 					<Form onSubmit={(e)=>registerUser(e)}>
 						<Form.Group  controlId= "name" className="my-3">

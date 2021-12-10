@@ -10,7 +10,7 @@ export default function AdminProdCard({adminProdProp}){
 
 	//console.log(adminProdProp)
 
-	const {name, description, price, _id, img, inStock} = adminProdProp
+	const {name, description, price, _id, img, inStock, isActive} = adminProdProp
 	
 	return(
 		<Fragment>
@@ -35,6 +35,7 @@ export default function AdminProdCard({adminProdProp}){
 						<Col md={2}  className= "my-auto">
 						<Card.Subtitle>in Stock: {inStock}</Card.Subtitle>
 						<Card.Subtitle>Price: Php {price}</Card.Subtitle>
+						<Card.Subtitle> Available: {isActive} </Card.Subtitle>
 						</Col >
 						
 						</Row>

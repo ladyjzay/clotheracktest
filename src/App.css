@@ -11,9 +11,19 @@
    color: grey;
    text-transform: uppercase;
    padding: 2rem;
-   border-top: 1px solid #EBDED1;
+   /*border-top: 1px solid #EBDED1;*/
 
 }
+
+#bg-img {
+  background-image: url(./images/login.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  height: 20rem;
+}
+
+
 
 .main-container{
   min-height: calc(100vh - 390px);
@@ -41,6 +51,8 @@
   background-color: white;
   padding: 35px ;
   align-content: center;
+  border-bottom: 1px solid #EBDED1;
+  
 
 }
 
@@ -81,18 +93,11 @@
   height: 450px;
 }
 
-#login-img{
+/*#login-img{
   height: 30rem;
   margin-left: auto;
   margin-right: auto;
   width: 40%;
-}
-
-/*#login-img{
-  background-image: url(./images/login.jpg) ;
-  background-repeat: no-repeat ;
-  background-position: center ;
-  background-size: 60% ;
 }*/
 
 .nav-link {
@@ -105,14 +110,16 @@
 }
 
 
-
-
 .footer{
   background-color: #EBDED1;
   color: #7a5230;
   font-size: 15px;
   width: 100%;
  
+}
+
+.tabs-link {
+  height: 4rem;
 }
 
 

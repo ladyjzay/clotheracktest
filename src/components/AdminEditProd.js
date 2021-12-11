@@ -46,7 +46,7 @@ export default function AdminEditProd(){
 		<Row className="m-0 " style={{height: "603px"}}>
 			<Col className="mt-5">
 				<h1>Edit Product</h1>
-				<Form>
+				<Form className="w-25">
 					<Form.Group controlId="search-product">
 						<Form.Label>Product Name: </Form.Label>
 						<Form.Control
@@ -55,7 +55,7 @@ export default function AdminEditProd(){
 							onChange = {(e) => setName(e.target.value)} 
 						/>
 					</Form.Group>
-    				<Button variant = 'secondary' type= 'submit' id = 'submitBtn' onClick={(e)=> searchProduct(e)}>
+    				<Button variant = 'secondary mt-4' type= 'submit' id = 'submitBtn' onClick={(e)=> searchProduct(e)}>
 											Search
 					</Button>
 					</Form>	

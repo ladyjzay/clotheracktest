@@ -6,6 +6,10 @@
  scroll-behaviour: smooth;
 }
 
+.all-btn{
+background: beige;  
+}
+
 .cat-header {
    text-align: center;
    color: grey;
@@ -87,18 +91,21 @@
   border-radius: 5px;
 }
 
+#delete-btn{
+  width: 8%;
+  border-radius: 8px;
+  font-size: 14px;;
+  display: block;
+  margin-left:  auto;
+  margin-right: 0;
+}
+
 
 .categoriesImg{
   width: 100%;
   height: 450px;
 }
 
-/*#login-img{
-  height: 30rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}*/
 
 .nav-link {
   color:  grey !important;
@@ -115,7 +122,8 @@
   color: #7a5230;
   font-size: 15px;
   width: 100%;
- 
+ left: 0;
+ bottom: 0;
 }
 
 .tabs-link {

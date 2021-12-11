@@ -1,5 +1,5 @@
 import {Fragment, useContext, useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Navigate, useNavigate, Link} from 'react-router-dom'
 import {Tabs, Tab, Col, Row, Container} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
@@ -56,11 +56,12 @@ export default function AdminOrderView() {
 	}, [])
 
 	return(
+		
 
 		<Fragment>
 		
 			<Container className="container-fluid justify-content-center">
-		 	<h1>Orders</h1>
+		 	<h1 className="my-4">Orders</h1>
 			<Row className="m-4">
 			{order}
 			</Row>

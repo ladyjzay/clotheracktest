@@ -1,6 +1,6 @@
 import {Fragment, useContext, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {Tabs, Tab, Col, Row, Container} from 'react-bootstrap'
+import {Tabs, Tab, Col, Row, Container, Button} from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
 import OrderCard from '../components/OrderCard'
@@ -43,9 +43,13 @@ export default function OrderView() {
 			data = data[0];
 			console.log(data)
 		
+
+			if(data !== undefined){
 			setOrderId(data._id)
-		
-			console.log(orderId)
+			} else {
+				setOrderId('0')
+			}
+			//console.log(orderId)
 		})
 	}, [])
 
@@ -53,19 +57,33 @@ export default function OrderView() {
 
 		<Fragment>
 		 	<Container >
-		 	<Row >
+		 	<Row  >
 			<Tabs defaultActiveKey="currentOrder" className="mt-5 tabs-link" tabClassName="text-secondary">
 			
 				<Tab eventKey="currentOrder" title="My Order">
+    					{(orderId === '0') ?
+    					<Fragment>
+    					<Container style={{height: "442px"}}>
+    					<Row className="mt-5">
+    					<Col className="mt-5 text-center">
+						<h1 className="mt-5">Ooops! Your Cart is Empty</h1>
+						<Button variant = "secondary" as={Link} to="/products">Click me to start Shopping</Button>
+						</Col>
+						</Row>
+						</Container>
+						</Fragment>
+						:
     				<Container>
     					<Row className="mb-5 ">
     			
     						<OrderCard/>
     						<Col className="text-end">
-    							<Link className= "btn btn-secondary mx-2" to = {`/checkout`}>PROCEED TO CHECKOUT</Link>
+    						
+    						<Link className= "btn btn-secondary mx-2" to = {`/checkout`}>PROCEED TO CHECKOUT</Link>
+    						
   							</Col>
   						</Row>
-  					</Container>
+  					</Container> }
   				</Tab>
 			  
 			  	<Tab eventKey="prev" title="Past Orders">

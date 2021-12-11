@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext, Fragment} from 'react'
-import {Col, Table, Button, Row, Container} from 'react-bootstrap'
+import {Image, Col, Table, Button, Row, Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
@@ -18,7 +18,7 @@ export default function OrderHistoryCard({orderHistoryProp}){
 			return (
 				
 					<tr>
-						<td>{cartItem.productId}</td>
+						<td><Image src={`../../images/${cartItem.productId.name}.jpg`} className="rounded mx-auto d-block" style={{ height: "10rem"}} /></td>
 						<td>{cartItem.productId.name}</td>
 						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>
@@ -42,7 +42,7 @@ export default function OrderHistoryCard({orderHistoryProp}){
 			<Table striped bordered hover>
 					  <thead>
 					    <tr>
-					      <th>Product ID</th>
+					      <th>Product</th>
 					      <th>Name</th>
 					      <th>Price</th>
 					      <th>Quantity</th>

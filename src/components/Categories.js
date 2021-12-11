@@ -14,11 +14,11 @@ export default function Categories(){
 			</Col>
 		</Row>
 
-		<Row className="m-0">
+		<Row className="m-0 row">
 			<Col className="px-0" md={6}>
 				<Image src="../images/tops.jpg" className="categoriesImg"/>
 			</Col>
-			{/* <Col md={1}></Col>*/}
+			
 			<Col className="my-auto" md={6}>
 				<div className=" mx-5 px-5 text-center">
 					<h5>Tops</h5>
@@ -29,8 +29,8 @@ export default function Categories(){
 		</Row>
 
 
-		<Row className="m-0">
-			{/*<Col md={1}></Col>*/}
+		<Row className="flex-column-reverse flex-sm-row m-0 row">
+			
 			<Col className="my-auto" md={6}>
 				<div className=" mx-5 px-5 text-center">
 					<h5>Bottoms</h5>
@@ -44,11 +44,10 @@ export default function Categories(){
 			</Col>
 		</Row>
 
-		<Row className="m-0">
+		<Row className="m-0 row">
 			<Col className="px-0" md={6}>
 				<Image src="../images/dresses.jpg" className="categoriesImg"/>
 			</Col>
-			{/*<Col md={1}></Col>*/}
 			<Col className="my-auto" md={6}>
 				<div className=" mx-5 px-5 text-center">
 					<h5>Dresses</h5>
@@ -58,7 +57,7 @@ export default function Categories(){
 			</Col>
 		</Row>
 
-		<Row className="m-0">
+		<Row className="flex-column-reverse flex-sm-row m-0 row">
 			{/*<Col md={1}></Col>*/}
 			<Col className="my-auto" md={6}>
 				<div className=" mx-5 px-5 text-center">

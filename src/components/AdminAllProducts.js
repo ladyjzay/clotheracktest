@@ -32,7 +32,7 @@ export default function AdminAllProducts(){
 	return(
 		<Fragment>
 		<Container>
-			<h1>All Products</h1>
+			<h1 className="my-4">All Products</h1>
 			<div>
 			{adminproduct}
 			</div>

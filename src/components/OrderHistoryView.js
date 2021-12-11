@@ -60,7 +60,7 @@ export default function OrderHistoryView() {
 		<Fragment>
 		
 			<Container className="container-fluid justify-content-center">
-		 	<h1>Orders</h1>
+		 	<h1 className="mt-4">Orders</h1>
 			<Row className="m-4">
 			{order}
 			</Row>

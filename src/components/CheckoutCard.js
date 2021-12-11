@@ -45,24 +45,11 @@ export default function CheckoutCard(){
 			setUserId(data.userId)
 			setCartList(data.cartList)
 			setProductId(data.productId)
-			// setQuantity(data.quantity)
-			// setSubTotal(data.subTotal)
 			setTotalAmount(data.totalAmount)
 			setStatus(data.status)
 			setPurchasedOn(data.purchasedOn)
 		})
 	}, [])
-
-	// 	useEffect(() => {
-	// 	console.log(productId)
-
-	// 	fetch(`http://localhost:4000/products/${productId}`)
-	// 	.then(res => res.json())
-	// 	.then(data => {
-	// 		console.log(data)
-
-	// 	})
-	// }, [productId])
 
 
 	function renderCartListCards (cartList) {

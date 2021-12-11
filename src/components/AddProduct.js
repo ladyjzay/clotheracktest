@@ -98,10 +98,10 @@ export default function AddProduct(){
 	}, [name, description, category, price, img, inStock])
 
 	return(
-	/*	(user._id !== null) ?
-			<Navigate to= "/" />
-		:
-*/
+		// (user._id !== null || user.isAdmin !== true) ?
+		// 	<Navigate to= "/" />
+		// :
+
 		<Fragment  >
 			<Row className="m-0 " style={{height: "603px"}}>
 				<Col lg ={{span: 10, offset: 3}} className= "mx-auto my-auto">
@@ -125,7 +125,6 @@ export default function AddProduct(){
 						      <Form.Group controlId= "img">
 							<Form.Control 
  								type = 'file'
- 								placeholder = 'Insert Image'
  								value = {img}
  								onChange = {e => setImg(e.target.value)}
  								required
@@ -137,7 +136,6 @@ export default function AddProduct(){
 						      <Form.Group controlId= "name">
 							<Form.Control 
  								type = 'name'
- 								placeholder = 'Product Name'
  								value = {name}
  								onChange = {e => setName(e.target.value)}
  								required
@@ -148,7 +146,6 @@ export default function AddProduct(){
 						      <Form.Group>
 							<Form.Control 
 								type = 'description'
- 								placeholder = 'Description'
  								value = {description}
  								onChange = {e => setDescription(e.target.value)}
  								required

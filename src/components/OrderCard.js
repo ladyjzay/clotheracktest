@@ -24,10 +24,12 @@ export default function OrderCard(){
 	const [totalAmount, setTotalAmount] = useState('')
 	const [status, setStatus] = useState('') 
 	const [purchasedOn, setPurchasedOn] = useState('')
-	console.log(orderId)
+	//console.log(orderId)
+
 	//prod
 	const [name, setName] = useState('')
-	const [productId, setProductId] = useState([])
+	const [productId, setProductId] = useState('')
+	
 	const [price, setPrice] = useState('')
 	const [category, setCategory] = useState('')
 	const [inStock, setInStock] = useState('')
@@ -45,10 +47,13 @@ export default function OrderCard(){
 		})
 		.then(res => res.json())
 		.then(data => {
+			
 			data = data[0];
 			console.log(data);
 
 			// console.log(data[0])
+
+			if(data !== undefined){
 		 	setOrderId(data._id)
 			setUserId(data.userId)
 			setCartList(data.cartList)
@@ -58,10 +63,14 @@ export default function OrderCard(){
 			setTotalAmount(data.totalAmount)
 			setStatus(data.status)
 			setPurchasedOn(data.purchasedOn)
+			} else {
+				setOrderId('')
+			}
 
 		})
 	}, [])
 
+	
 
 	function renderCartListCards (cartList) {
 		return cartList.map(cartItem => {
@@ -73,13 +82,48 @@ export default function OrderCard(){
 						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>
 						<td>{cartItem.subTotal}</td>
-						<td><Button variant = 'secondary' type= 'submit' id = 'submitBtn' size="sm">Remove</Button></td>
+						<td><Button variant = 'secondary' type= 'submit' id = 'submitBtn' size="sm" onClick={(e) => removeCartItem(e)}>Remove</Button></td>
 					</tr>
 				
 				
 			)
 		});
 	}
+
+	
+	function removeCartItem(e) {
+
+		
+		fetch(`http://localhost:4000/orders/${orderId}/deleteItem`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type' : 'application/json',
+				Authorization: `Bearer ${localStorage.getItem("token")}`
+			},
+			body: JSON.stringify({
+				productId: productId
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			console.log(data)
+		})
+	} 
+
+	// useEffect(() => {
+	// 	fetch(`http://localhost:4000/orders/myOrder`, {
+	// 		headers: {
+	// 			Authorization: `Bearer ${localStorage.getItem("token")}`
+	// 		}
+	// 	})
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		//data = data[0];
+
+	// 		console.log(data)
+	// 		setProductId(data.productId._id)
+	// 	})
+	// }, [])
 
 
 	function confirmDelete(e) {
@@ -115,7 +159,7 @@ export default function OrderCard(){
 
 				  Swal.fire(
      			 'Deleted!',
-      			'Your file has been deleted.',
+      			'Your cart is now empty.',
       			'success'
     	)
 				history('/')
@@ -124,6 +168,10 @@ export default function OrderCard(){
 
 
 		return(
+			(orderId === undefined) ?
+				<h1>CART EMPTY</h1>
+			:
+			
 
 			
 			<Fragment>
@@ -160,7 +208,7 @@ export default function OrderCard(){
 
 
 		)
-
+	
 
 
 }

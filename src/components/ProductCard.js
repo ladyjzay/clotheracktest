@@ -107,9 +107,9 @@ export default function ProductCard({prodProp}){
 
 						<Link className= "btn btn-secondary mx-2" to = {`/products/${_id}`}>See Details</Link>
 						{ (user.id !== null && user.isAdmin === false) ?
-						<Button variant = "secondary" onClick={() => addCart(_id)}>Add to Cart</Button>
+						<Button variant = "secondary my-2"  onClick={() => addCart(_id)}>Add to Cart</Button>
 						:
-						<Button variant = "secondary" as={Link} to="/login" >Log in to Shop</Button>
+						<Button variant = "secondary my-2" as={Link} to="/login" >Log in to Shop</Button>
 						}
 					</Card.Body>
 					</Card>

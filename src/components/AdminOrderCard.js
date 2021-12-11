@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext, Fragment} from 'react'
-import {Col, Container, Row, Table} from 'react-bootstrap'
+import {Image, Col, Container, Row, Table} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UserContext from '../UserContext' 
@@ -8,7 +8,7 @@ import '../App.css'
 
 export default function AdminOrderCard({adminOrderProp}){
 
-	const {_id, userId, cartList, totalAmount, purchasedOn, status } = adminOrderProp
+	const {_id, userId, cartList, totalAmount, purchasedOn, status, productId } = adminOrderProp
 
 
 	const {user} = useContext(UserContext)
@@ -17,9 +17,9 @@ export default function AdminOrderCard({adminOrderProp}){
 		return cartList.map(cartItem => {
 			return (
 				<tr>
-						<td>{cartItem.productId}</td>
-						<td>{}</td>
-						<td>{}</td>
+						<td><Image src={`../../images/${cartItem.productId.name}.jpg`} className="rounded mx-auto d-block" style={{ height: "5rem"}} /></td>
+						<td>{cartItem.productId.name}</td>
+						<td>{cartItem.productId.price}</td>
 						<td>{cartItem.quantity}</td>
 						<td>{cartItem.subTotal}</td>
 					</tr>

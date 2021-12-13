@@ -105,11 +105,11 @@ export default function ProductCard({prodProp}){
 						<Card.Subtitle>{description}</Card.Subtitle>
 						<Card.Text>Php {price}</Card.Text>
 
-						<Link className= "btn btn-secondary mx-2" to = {`/products/${_id}`}>See Details</Link>
+						<Link className= "btn btn-secondary m-2" to = {`/products/${_id}`}>See Details</Link>
 						{ (user.id !== null && user.isAdmin === false) ?
-						<Button variant = "secondary my-2"  onClick={() => addCart(_id)}>Add to Cart</Button>
+						<Button variant = "secondary m-2"  onClick={() => addCart(_id)}>Add to Cart</Button>
 						:
-						<Button variant = "secondary my-2" as={Link} to="/login" >Log in to Shop</Button>
+						<Button variant = "secondary m-2" as={Link} to="/login" >Log in to Shop</Button>
 						}
 					</Card.Body>
 					</Card>

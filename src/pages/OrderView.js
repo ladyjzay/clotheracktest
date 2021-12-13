@@ -41,7 +41,7 @@ export default function OrderView() {
 		.then(res => res.json())
 		.then(data => {
 			data = data[0];
-			console.log(data)
+			//console.log(data)
 		
 
 			if(data !== undefined){

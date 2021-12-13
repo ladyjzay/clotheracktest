@@ -96,7 +96,7 @@ export default function ProductView(){
 	}, [productId])
 
 	useEffect(() => {
-		console.log(productId)
+		//console.log(productId)
 
 		fetch(`http://localhost:4000/products/${productId}`)
 		.then(res => res.json())
@@ -125,7 +125,7 @@ export default function ProductView(){
 							<Col md={7} className="text-center" >
 							<Card.Img variant= "left" src={`../images/${name}.jpg`} style={{ height: "28rem"}}/>
 							</Col>
-							<Col md={5} className= "my-auto">
+							<Col md={5} className= "my-auto text-center">
 							<Card.Title>{name}</Card.Title>
 							<Card.Subtitle>Description: </Card.Subtitle>
 							<Card.Text>{description}</Card.Text>
@@ -134,11 +134,11 @@ export default function ProductView(){
 						
 
 							{ (user.id !== null && user.isAdmin === false) ?
-								<Button variant = "secondary" onClick={() => addCart(productId)}>Add to Cart</Button>
+								<Button variant = "secondary m-2" onClick={() => addCart(productId)}>Add to Cart</Button>
 								:
-								<Button variant = "secondary" as={Link} to="/login" >Log in to Shop</Button>
+								<Button variant = "secondary m-2" as={Link} to="/login" >Log in to Shop</Button>
 							}
-							<Button variant = "secondary" className="mx-4" >Go Back</Button>
+							<Button variant = "secondary" className="mx-4" onClick={()=> history(-1)}>Go Back</Button>
 							</Col>
 						</Row>
 						</Container>

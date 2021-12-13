@@ -10,8 +10,22 @@ export default function AppNavbar(){
 	const {user} = useContext(UserContext)
 
 
+	// const {cart} = useState()
+
+	// const [ checkout, setCheckout] = useState([])
+	// const [ cartList, setCartList] = useState([]);
+
+	// const getCartTotal = () => {
+ //    return cart.reduce(
+ //      (sum, { quantity }) => sum + quantity,
+ //      0
+ //    );
+ //  };
+
+
+
 	return(
-		<Navbar id="navbar" expand="lg" className="mx-5 px-5">
+		<Navbar id="navbar" expand="lg" className="mx-5 px-0">
 			<Navbar.Brand as={Link} to="/" exact >The Clothes Rack</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
@@ -29,7 +43,7 @@ export default function AppNavbar(){
         			{(user.id !== null && user.isAdmin === false) ?
 						<Fragment>
 							<Nav.Link as={Link} to="/logout" exact>Logout</Nav.Link>
-							<Nav.Link as={Link} to="/myOrder" exact><FaCartArrowDown/></Nav.Link>
+							<Nav.Link as={Link} to="/myOrder" exact><FaCartArrowDown id="cartIcon"/></Nav.Link>
 						</Fragment>
 					:	(user.id !== null && user.isAdmin === true) ?
 						<Fragment>
@@ -48,4 +62,49 @@ export default function AppNavbar(){
 			</Navbar.Collapse>
 		</Navbar>
 	)
+
+	/*return(
+		<Navbar id="navbar" expand="lg" className="mx-5 px-5">
+			<Navbar.Brand as={Link} to="/" exact >The Clothes Rack</Navbar.Brand>
+			<Navbar.Toggle aria-controls="basic-navbar-nav" />
+			<Navbar.Collapse id="basic-navbar-nav">
+				<Nav className="justify-content-end" style={{ width: "100%" }}>
+					<Nav.Link as={Link} to="/" exact >Home</Nav.Link>
+					<NavDropdown title="Catalog" id="basic-nav-dropdown">
+          				<NavDropdown.Item as={Link} to="/products" exact>All</NavDropdown.Item>
+          				<NavDropdown.Item as={Link} to="/products/categories/top" exact>Tops</NavDropdown.Item>
+          				<NavDropdown.Item as={Link} to="/products/categories/bottom" exact>Bottoms</NavDropdown.Item>
+          				<NavDropdown.Item as={Link} to="/products/categories/dress" exact>Dress</NavDropdown.Item>
+          				<NavDropdown.Item as={Link} to="/products/categories/accessory" exact>Accessories</NavDropdown.Item>
+        			</NavDropdown>
+        			{(user.isAdmin === true) ?  
+        			<NavDropdown title="Admin" id="basic-nav-dropdown">
+        				<NavDropdown.Item as={Link} to="/AdminProduct" exact>Products</NavDropdown.Item>
+        				<NavDropdown.Item as={Link} to="/AdminOrderView" exact>Orders</NavDropdown.Item>
+        			</NavDropdown>
+        			:
+        			<Nav.Link></Nav.Link>
+        			}
+        			{ (user.id !== null) ?
+						<Fragment>
+						<Nav.Link as={Link} to="/logout" exact>Logout</Nav.Link>
+
+						{{(Checkout.length !== null) ? } //?
+        				<Nav.Link as={Link} to="/myOrder" exact><FaCartArrowDown id="cartIcon"/> <Badge bg="secondary">({getCartTotal})</Badge>
+        				<span className="visually-hidden">unread messages</span>
+        				</Nav.Link>
+        				:
+        				<Nav.Link as={Link} to="/myOrder" exact><FaCartArrowDown/></Nav.Link>
+        				}
+						</Fragment>
+						:
+						<Fragment>
+							<Nav.Link as={Link} to="/login" exact>Login</Nav.Link>
+						</Fragment>
+					}
+				</Nav>
+			</Navbar.Collapse>
+		</Navbar>
+	)*/
+
 }

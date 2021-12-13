@@ -64,6 +64,7 @@ background: beige;
   align-content: flex-end;
 }
 
+
 #banner{
   height: 825px;
   width: 100%;
@@ -75,6 +76,12 @@ background: beige;
 
 }
 */
+
+#cartIcon {
+  height: 100%;
+  width: 155%
+}
+
 
 #shopnow-btn{
    position: absolute;
